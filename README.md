@@ -13,6 +13,6 @@ Build and name using `build.sh` - the script takes a directory, and names an ima
 
 Copy `cenv` to `~/.local/bin`
 
-Run `cenv $IMAGENAME` to run a transient container, with the current working directory mounted to `/home/$(whoami)` ; if there is a `./scratch` directory, that is used instead of the current working directory
+Run `cenv $IMAGENAME` to run a transient container, with the current working directory mounted to `/home/$(whoami)`
 
 	cenv pip
