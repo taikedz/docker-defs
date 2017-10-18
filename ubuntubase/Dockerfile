@@ -2,6 +2,7 @@ FROM ubuntu:latest
 
 RUN apt-get update
 RUN apt-get install tmux htop vim git ca-certificates sudo -y
+RUN apt-get install software-properties-common -y
 
 RUN useradd -m ubuntu
 # Set the ubuntu user's password to 'ubuntu'
