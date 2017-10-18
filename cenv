@@ -1,0 +1,12 @@
+#!/bin/bash
+
+WHOAMI="$(whoami)"
+
+SCRATCHDIR="$PWD/scratch"
+
+if [[ ! -d "$SCRATCHDIR" ]]; then
+	SCRATCHDIR="$PWD"
+fi
+
+set -x
+docker run -it --rm -v "$SCRATCHDIR:/home/$WHOAMI" "$@"
