@@ -3,4 +3,4 @@
 CURDIRNAME="$(basename "$PWD")"
 
 set -x
-docker run -it --rm -v "$PWD:/home/ubuntu/$CURDIRNAME" "$@"
+docker run -it --rm -v "$PWD:/var/hostdata/$CURDIRNAME" "$@"
