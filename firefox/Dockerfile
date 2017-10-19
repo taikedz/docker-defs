@@ -19,4 +19,4 @@ RUN apt-get install -y firefox
 RUN useradd firefox -m
 USER firefox
 
-ENTRYPOINT /usr/bin/firefox
+CMD ["/usr/bin/firefox"]
