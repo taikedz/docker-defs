@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WHOAMI="$(whoami)"
+CURDIRNAME="$(basename "$PWD")"
 
 set -x
-docker run -it --rm -v "$PWD:/home/$WHOAMI" "$@"
+docker run -it --rm -v "$PWD:/home/ubuntu/$CURDIRNAME" "$@"
