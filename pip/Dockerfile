@@ -7,3 +7,4 @@ RUN pip install --upgrade pip
 RUN pip install virtualenv
 
 USER ubuntu
+WORKDIR /home/ubuntu
