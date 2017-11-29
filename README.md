@@ -8,7 +8,7 @@ You can use `make` to build any of the images by name - for example, `make pip`
 
 ## Running
 
-Copy `cenv` to `~/.local/bin`
+Install `cenv` by running `./install-cenv.sh`
 
 Run `cenv $IMAGENAME` to run a container, with the current working directory as a subdirectory of `/var/hostdata`
 
@@ -17,3 +17,9 @@ Run `cenv $IMAGENAME` to run a container, with the current working directory as 
 You can include any extra options before using the image name - for example for a transient container
 
 	cenv --rm pip
+
+## Running graphical applications
+
+You can run graphical apps with `cenvx`:
+
+	cenvx firefox

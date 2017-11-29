@@ -2,5 +2,35 @@
 
 CURDIRNAME="$(basename "$PWD")"
 
-set -x
-docker run -it --rm -v "$PWD:/var/hostdata/$CURDIRNAME" "$@"
+faile() {
+	echo -e "\033[31;1m$*\033[0m"
+	exit 1
+}
+
+rundocker() {
+	( set -x
+	docker run --mount="type=bind,source=$PWD,destination=/var/hostdata/$CURDIRNAME" "$@"
+	)
+}
+
+cenv:rundocker() {
+	rundocker -it "$@"
+}
+
+cenvx:rundocker() {
+	rundocker -d --net host -e DISPLAY=unix$DISPLAY --device /dev/snd "$@"
+}
+
+case "$(basename "$0")" in
+	cenv)
+		cenv:rundocker "$@" ;;
+	cenvx)
+		cenvx:rundocker "$@" ;;
+	cenvr)
+		cenv:rundocker --rm "$@" ;;
+	cenvrx)
+		cenvx:rundocker --rm "$@" ;;
+	*)
+		faile "Unconfigured comand [$0]" ;;
+esac
+
