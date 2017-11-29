@@ -10,3 +10,4 @@ RUN sed -r 's|^ubuntu:.+|ubuntu:$6$/os6kZjn$We9N12ohtJ1oVeaA8QgPNMv/5EzljuFxadZ3
 RUN gpasswd -a ubuntu sudo
 
 USER ubuntu
+ADD vimrc /home/ubuntu/.vimrc
