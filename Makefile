@@ -1,9 +1,12 @@
 SHELL=/bin/bash
 
-.NOTPARALLEL .PHONY: ubuntubase
+.NOTPARALLEL .PHONY: ubuntubase emby
 
 ubuntubase:
 	./build.sh ubuntubase --no-cache
+
+emby:
+	./build.sh emby
 
 pip: ubuntubase
 	./build.sh pip
