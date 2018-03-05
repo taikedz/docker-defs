@@ -6,15 +6,15 @@ faile() {
 }
 
 main() {
-	local thedir=$1; shift
+	local thedir="definitions/$1"; shift
 
 	if [[ ! -f "$thedir/Dockerfile" ]]; then
 		faile "Could not find [$thedir/Dockerfile]"
 	fi
 
-	local thename=$(basename $thedir)
+	local thename="$(basename "$thedir")"
 
-	docker build -t $thename "$@" ./$thedir
+	docker build -t "$thename" "$@" "$thedir"
 }
 
 main "$@"

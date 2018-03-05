@@ -19,6 +19,9 @@ pip: ubuntubase
 php: ubuntubase
 	./build.sh php
 
+npm: ubuntubase
+	./build.sh npm
+
 qupzilla: ubuntubase
 	./build.sh qupzilla
 
@@ -27,4 +30,3 @@ firefox: ubuntubase
 
 thunderbird: ubuntubase
 	./build.sh thunderbird
-
