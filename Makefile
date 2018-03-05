@@ -1,9 +1,17 @@
 SHELL=/bin/bash
 
-.NOTPARALLEL .PHONY: ubuntubase
+.NOTPARALLEL .PHONY: ubuntubase force emby
 
-ubuntubase:
+# This will ALWAYS build without caches
+force:
 	./build.sh ubuntubase --no-cache
+
+# This will rely on the cached images most of the time
+ubuntubase:
+	./build.sh ubuntubase
+
+emby:
+	./build.sh emby
 
 pip: ubuntubase
 	./build.sh pip

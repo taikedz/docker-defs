@@ -2,9 +2,9 @@ FROM ubuntubase
 
 USER root
 
-RUN apt-get install -y python3 python-pip3
-RUN pip3 install --upgrade pip3
-RUN pip3 install virtualenv
+RUN apt-get install -y python3 python3-pip
+RUN pip install --upgrade pip
+RUN pip install virtualenv
 
 USER ubuntu
 WORKDIR /home/ubuntu
