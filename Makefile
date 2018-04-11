@@ -13,6 +13,9 @@ ubuntubase:
 emby:
 	./build.sh emby
 
+apache2:
+	./build.sh apache2
+
 pip: ubuntubase
 	./build.sh pip
 
