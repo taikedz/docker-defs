@@ -5,7 +5,16 @@ faile() {
 	exit 1
 }
 
+printhelp() {
+    echo "$0 TARGET DOCKER_BUILD_ARGS ..."
+}
+
 main() {
+    [[ -n "$*" ]] || {
+        printhelp
+        exit
+    }
+
 	local thedir="definitions/$1"; shift
 
 	if [[ ! -f "$thedir/Dockerfile" ]]; then
