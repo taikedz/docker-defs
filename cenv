@@ -17,6 +17,12 @@ cenv:rundocker() {
 	rundocker -it "$@"
 }
 
+cenvb:rundocker() {
+    if which busybox >/dev/null ; then
+        cenv:rundocker -v "$(which busybox):/bin/busybox" --entrypoint=/bin/busybox "$@" sh
+    fi
+}
+
 cenvx:rundocker() {
 	rundocker -d --net host -e DISPLAY=unix$DISPLAY --device /dev/snd "$@"
 }
@@ -26,10 +32,8 @@ case "$(basename "$0")" in
 		cenv:rundocker "$@" ;;
 	cenvx)
 		cenvx:rundocker "$@" ;;
-	cenvr)
-		cenv:rundocker --rm "$@" ;;
-	cenvrx)
-		cenvx:rundocker --rm "$@" ;;
+	cenvb)
+		cenvb:rundocker "$@" ;;
 	*)
 		faile "Unconfigured comand [$0]" ;;
 esac
