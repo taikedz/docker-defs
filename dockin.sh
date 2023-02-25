@@ -2,9 +2,11 @@ set -euo pipefail
 
 . /etc/os-release
 
-if [[ "$ID" != ubuntu ]]; then
-	read -p "This script is only guaranteed for Ubuntu - run anyway? y/N> "
-	[[ "$REPLY" =~ ^y|Y|yes|YES$ ]] || exit 1
+if [[ "$ID" != ubuntu ]] && [[ -z "$UBUNTU_CODENAME" ]]; then
+    echo "Only guaranteed for Ubuntu derivatives. Supply environment variable 'UBUNTU_CODENAME' (e.g. 'jammy') to force installation."
+    exit 1
+else
+    UBUNTU_CODENAME="$(lsb_release -cs)"
 fi
 
 [[ "$UID" = 0 ]] || {
@@ -24,10 +26,8 @@ apt-get install "${packages[@]}"
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $UBUNTU_CODENAME stable"
 
 apt-get update
 apt-get install -y docker-ce
 
-pip install --upgrade pip
-pip install docker-compose
